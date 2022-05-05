@@ -28,15 +28,45 @@ app.listen(PORT, () => {
   });
 
 
-  db.query(`SELECT * FROM candidates`, (err, rows) => {
-    console.log(rows);
-  });
+//   db.query(`SELECT * FROM candidates`, (err, rows) => {
+//     console.log(rows);
+//   });
 
-  app.get('/', (req, res) => {
-    res.json({
-      message: 'Hello World'
-    });
-  });
+
+//   // GET a single candidate
+// db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log(row);
+//   });
+
+//   app.get('/', (req, res) => {
+//     res.json({
+//       message: 'Hello World'
+//     });
+//   });
+
+// Delete a candidate
+// db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log(result);
+//   });
+
+
+  // Create a candidate
+const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
+VALUES (?,?,?,?)`;
+const params = [1, 'Ronald', 'Firbank', 1];
+
+db.query(sql, params, (err, result) => {
+if (err) {
+console.log(err);
+}
+console.log(result);
+});
 
 
   app.use((req, res) => {
